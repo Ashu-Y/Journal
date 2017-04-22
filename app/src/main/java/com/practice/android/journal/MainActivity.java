@@ -1,6 +1,7 @@
 package com.practice.android.journal;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -135,5 +136,9 @@ public class MainActivity extends AppCompatActivity {
     public void check(View v) {
         insertEntry();
         displayDatabaseInfo();
+    }
+
+    public void editor(View view) {
+        startActivity(new Intent(this, EditorActivity.class));
     }
 }

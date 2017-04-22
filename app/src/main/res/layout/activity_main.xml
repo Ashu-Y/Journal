@@ -19,6 +19,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="check"
-        android:text="Button"/>
+        android:text="display"/>
+
+    <Button
+        android:id="@+id/editor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="editor"
+        android:text="Add Custom data"/>
 
 </LinearLayout>
