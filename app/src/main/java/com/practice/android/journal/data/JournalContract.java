@@ -11,10 +11,11 @@ public final class JournalContract {
     public static abstract class JournalEntry implements BaseColumns {
 
         public static final String TABLE_NAME = "Journal";
+        public final static String _ID = BaseColumns._ID;
         public static final String COLUMN_TITLE = "Title";
         public static final String COLUMN_DATE = "Date";
         public static final String COLUMN_LOCATION = "Location";
-        public static final String COLUMN_CONTENT = "Content";
+        public static final String COLUMN_DESCRIPTION = "Description";
 
     }
 
