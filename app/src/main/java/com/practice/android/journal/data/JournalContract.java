@@ -15,6 +15,9 @@ public final class JournalContract {
         public static final String COLUMN_TITLE = "Title";
         public static final String COLUMN_DATE = "Date";
         public static final String COLUMN_LOCATION = "Location";
+        public static final String COLUMN_IMAGE1 = "Image1";
+        public static final String COLUMN_IMAGE2 = "Image2";
+        public static final String COLUMN_IMAGE3 = "Image3";
         public static final String COLUMN_DESCRIPTION = "Description";
 
     }

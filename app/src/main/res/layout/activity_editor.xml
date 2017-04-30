@@ -27,7 +27,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,11 +38,20 @@
 
         <EditText
             android:id="@+id/date"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1.02"
             android:maxLines="1"/>
 
+        <ImageView
+            android:id="@+id/button1"
+            android:layout_width="24dp"
+            android:layout_height="match_parent"
+            android:onClick="setDate"
+            android:src="@drawable/calendar"/>
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -77,12 +87,60 @@
             android:layout_height="wrap_content"/>
 
     </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnSelectPhoto1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select first Photo"/>
+
+    <Button
+        android:id="@+id/btnSelectPhoto2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select second Photo"/>
+
+    <Button
+        android:id="@+id/btnSelectPhoto3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select third Photo"/>
+
     <Button
         android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="insertEntry"
         android:text="Save"/>
+
+    <!--<LinearLayout-->
+    <!--android:orientation="horizontal"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/ivImage1"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:src="@mipmap/ic_launcher"/>-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/ivImage2"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:src="@mipmap/ic_launcher"/>-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/ivImage3"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_weight="1"-->
+    <!--android:src="@mipmap/ic_launcher"/>-->
+
+    <!--</LinearLayout>-->
 
 
 </LinearLayout>

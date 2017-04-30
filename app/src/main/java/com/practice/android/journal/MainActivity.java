@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                 JournalEntry.COLUMN_TITLE,
                 JournalEntry.COLUMN_DATE,
                 JournalEntry.COLUMN_LOCATION,
+                JournalEntry.COLUMN_IMAGE1,
+                JournalEntry.COLUMN_IMAGE2,
+                JournalEntry.COLUMN_IMAGE3,
                 JournalEntry.COLUMN_DESCRIPTION};
 
         //Perform a query on Journal table
@@ -64,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     JournalEntry.COLUMN_TITLE + " - " +
                     JournalEntry.COLUMN_DATE + " - " +
                     JournalEntry.COLUMN_LOCATION + " - " +
+                    JournalEntry.COLUMN_IMAGE1 + " - " +
+                    JournalEntry.COLUMN_IMAGE2 + " - " +
+                    JournalEntry.COLUMN_IMAGE3 + " - " +
                     JournalEntry.COLUMN_DESCRIPTION + "\n");
 
             //Find the index of each column
@@ -71,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
             int titleColumnIndex = cursor.getColumnIndex(JournalEntry.COLUMN_TITLE);
             int dateColumnIndex = cursor.getColumnIndex(JournalEntry.COLUMN_DATE);
             int locationColumnIndex = cursor.getColumnIndex(JournalEntry.COLUMN_LOCATION);
+            int image1ColumnIndex = cursor.getColumnIndex(JournalEntry.COLUMN_IMAGE1);
+            int image2ColumnIndex = cursor.getColumnIndex(JournalEntry.COLUMN_IMAGE2);
+            int image3ColumnIndex = cursor.getColumnIndex(JournalEntry.COLUMN_IMAGE3);
             int descriptionColumnIndex = cursor.getColumnIndex(JournalEntry.COLUMN_DESCRIPTION);
 
             // Iterate through all the returned rows in the cursor
@@ -81,8 +90,11 @@ public class MainActivity extends AppCompatActivity {
                  */
                 int currentID = cursor.getInt(idColumnIndex);
                 String currentTitle = cursor.getString(titleColumnIndex);
-                int currentDate = cursor.getInt(dateColumnIndex);
+                String currentDate = cursor.getString(dateColumnIndex);
                 String currentLocation = cursor.getString(locationColumnIndex);
+                String currentImage1 = cursor.getString(image1ColumnIndex);
+                String currentImage2 = cursor.getString(image2ColumnIndex);
+                String currentImage3 = cursor.getString(image3ColumnIndex);
                 String currentDescription = cursor.getString(descriptionColumnIndex);
 
                 //display the values from each column of the current row in the TextView
@@ -90,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
                         currentTitle + " - " +
                         currentDate + " - " +
                         currentLocation + " - " +
+                        currentImage1 + " - " +
+                        currentImage2 + " - " +
+                        currentImage3 + " - " +
                         currentDescription));
 
             }

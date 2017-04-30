@@ -44,6 +44,9 @@ public class JournalDbHelper extends SQLiteOpenHelper {
                 + JournalEntry.COLUMN_TITLE + " TEXT NOT NULL, "
                 + JournalEntry.COLUMN_DATE + " TEXT, "
                 + JournalEntry.COLUMN_LOCATION + " TEXT, "
+                + JournalEntry.COLUMN_IMAGE1 + " TEXT, "
+                + JournalEntry.COLUMN_IMAGE2 + " TEXT, "
+                + JournalEntry.COLUMN_IMAGE3 + " TEXT, "
                 + JournalEntry.COLUMN_DESCRIPTION + " TEXT )";
 
         //Execute the SQL statement
