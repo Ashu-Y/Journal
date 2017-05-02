@@ -1,10 +1,12 @@
 package com.practice.android.journal;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,25 +18,23 @@ public class JournalDetails extends AppCompatActivity {
 
     public JournalDbHelper mDbHelper;
     String title;
-    TextView tv;
+    TextView tvTitle;
+    TextView tvDate;
+    TextView tvLocation;
+    TextView tvDesc;
+    SQLiteDatabase db;
     private ImageView ivImage1;
     private ImageView ivImage2;
     private ImageView ivImage3;
-    SQLiteDatabase db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_journal_details);
 
-        Bundle bundle = getIntent().getExtras();
-        title = bundle.getString("title");
+        title = getIntent().getExtras().getString("title");
+//        Log.d("xyz",title);
 
-        tv = (TextView) findViewById(R.id.title);
-
-
-        tv.setText(title);
 
         mDbHelper = new JournalDbHelper(this);
 
@@ -127,9 +127,21 @@ public class JournalDetails extends AppCompatActivity {
 
                 if (title.equals(currentTitle)) {
 
+                    tvTitle = (TextView) findViewById(R.id.title);
+                    tvTitle.setText(currentTitle);
+
+                    tvDate = (TextView) findViewById(R.id.date);
+                    tvDate.setText(currentDate);
+
+                    tvLocation = (TextView) findViewById(R.id.location);
+                    tvLocation.setText(currentLocation);
+
+                    tvDesc = (TextView) findViewById(R.id.desc);
+                    tvDesc.setText(currentDescription);
+
                     if (currentImage1 != null && !currentImage1.isEmpty()) {
                         ivImage1 = (ImageView) findViewById(R.id.ivImage1);
-                        tv.append("\n" + currentImage1);
+//                        tv.append("\n" + currentImage1);
                         Toast.makeText(this, currentImage1, Toast.LENGTH_SHORT).show();
                         ivImage1.setImageURI(Uri.parse(currentImage1));
 
@@ -137,12 +149,12 @@ public class JournalDetails extends AppCompatActivity {
 
                     if (currentImage2 != null && !currentImage2.isEmpty()) {
                         ivImage2 = (ImageView) findViewById(R.id.ivImage2);
-                        tv.append("\n" + currentImage2);
+//                        tv.append("\n" + currentImage2);
                         ivImage2.setImageURI(Uri.parse(currentImage2));
                     }
 
                     if (currentImage3 != null && !currentImage3.isEmpty()) {
-                        tv.append("\n" + currentImage3);
+//                        tv.append("\n" + currentImage3);
                         ivImage3 = (ImageView) findViewById(R.id.ivImage3);
                         ivImage3.setImageURI(Uri.parse(currentImage3));
                     }
@@ -154,6 +166,18 @@ public class JournalDetails extends AppCompatActivity {
             cursor.close();
 
         }
+    }
+
+    public void deleteEntry(View view) {
+
+        // Define 'where' part of query.
+        String selection = JournalEntry.COLUMN_TITLE + " LIKE ?";
+        // Specify arguments in placeholder order.
+        String[] selectionArgs = {title};
+        // Issue SQL statement.
+        db.delete(JournalEntry.TABLE_NAME, selection, selectionArgs);
+
+        startActivity(new Intent(this, MainActivity.class));
     }
 
 }

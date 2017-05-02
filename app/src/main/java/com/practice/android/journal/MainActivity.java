@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         displayDatabaseInfo();
 
 
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+        ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+
         ListView listView = (ListView) findViewById(R.id.lvItems);
         listView.setAdapter(itemsAdapter);
 
@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new OnItemClickListener()
         {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
                 Toast.makeText(MainActivity.this, items.get(position).toString(), Toast.LENGTH_SHORT).show();
 
@@ -156,13 +155,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void check(View v) {
-        displayDatabaseInfo();
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        ListView listView = (ListView) findViewById(R.id.lvItems);
-        listView.setAdapter(itemsAdapter);
-    }
+//    public void check(View v) {
+//        displayDatabaseInfo();
+//        ArrayAdapter<String> itemsAdapter =
+//                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
+//        ListView listView = (ListView) findViewById(R.id.lvItems);
+//        listView.setAdapter(itemsAdapter);
+//    }
 
     public void editor(View view) {
         startActivity(new Intent(this, EditorActivity.class));
