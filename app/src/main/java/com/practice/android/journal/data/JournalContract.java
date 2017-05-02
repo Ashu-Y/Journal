@@ -8,7 +8,9 @@ import android.provider.BaseColumns;
 
 public final class JournalContract {
 
-    public static abstract class JournalEntry implements BaseColumns {
+    //abstract
+
+    public static class JournalEntry implements BaseColumns {
 
         public static final String TABLE_NAME = "Journal";
         public final static String _ID = BaseColumns._ID;

@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -58,8 +57,10 @@ public class EditorActivity extends AppCompatActivity {
     private DatePicker datePicker;
     private Calendar calendar;
     private int year, month, day;
-    private DatePickerDialog.OnDateSetListener myDateListener = new
-            DatePickerDialog.OnDateSetListener() {
+
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener()
+            {
                 @Override
                 public void onDateSet(DatePicker arg0,
                                       int arg1, int arg2, int arg3) {
@@ -110,10 +111,7 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flag = 2;
-                ivImage2 = (ImageView) findViewById(R.id.ivImage2);
-                ivImage2.setImageURI(Uri.parse(check1));
-
-//                selectImage();
+                selectImage();
             }
         });
         ivImage2 = (ImageView) findViewById(R.id.ivImage2);

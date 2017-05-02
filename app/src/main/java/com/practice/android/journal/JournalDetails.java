@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.practice.android.journal.data.JournalContract.JournalEntry;
 import com.practice.android.journal.data.JournalDbHelper;
@@ -16,9 +17,10 @@ public class JournalDetails extends AppCompatActivity {
     public JournalDbHelper mDbHelper;
     String title;
     TextView tv;
-    ImageView iv;
+    private ImageView ivImage1;
+    private ImageView ivImage2;
+    private ImageView ivImage3;
     SQLiteDatabase db;
-
 
 
     @Override
@@ -30,7 +32,7 @@ public class JournalDetails extends AppCompatActivity {
         title = bundle.getString("title");
 
         tv = (TextView) findViewById(R.id.title);
-        iv = (ImageView) findViewById(R.id.img);
+
 
         tv.setText(title);
 
@@ -45,7 +47,7 @@ public class JournalDetails extends AppCompatActivity {
         //Create and/or open a database to read from it
         db = mDbHelper.getReadableDatabase();
 
-        String[] selArgs = new String[] {title};
+        String[] selArgs = new String[]{title};
 
         /*
         Define a projection that specifies which columns from the database
@@ -123,10 +125,28 @@ public class JournalDetails extends AppCompatActivity {
 //                        currentImage3 + " - " +
 //                        currentDescription));
 
-                tv.append(currentDate);
-                if(currentImage1 != null && !currentImage1.isEmpty())
-                    iv.setImageURI(Uri.parse(currentImage1));
+                if (title.equals(currentTitle)) {
 
+                    if (currentImage1 != null && !currentImage1.isEmpty()) {
+                        ivImage1 = (ImageView) findViewById(R.id.ivImage1);
+                        tv.append("\n" + currentImage1);
+                        Toast.makeText(this, currentImage1, Toast.LENGTH_SHORT).show();
+                        ivImage1.setImageURI(Uri.parse(currentImage1));
+
+                    }
+
+                    if (currentImage2 != null && !currentImage2.isEmpty()) {
+                        ivImage2 = (ImageView) findViewById(R.id.ivImage2);
+                        tv.append("\n" + currentImage2);
+                        ivImage2.setImageURI(Uri.parse(currentImage2));
+                    }
+
+                    if (currentImage3 != null && !currentImage3.isEmpty()) {
+                        tv.append("\n" + currentImage3);
+                        ivImage3 = (ImageView) findViewById(R.id.ivImage3);
+                        ivImage3.setImageURI(Uri.parse(currentImage3));
+                    }
+                }
             }
         } finally {
             //Always close the cursor when you are done reading from it.
