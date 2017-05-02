@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#111111"
-    android:layout_height="match_parent">
-<LinearLayout
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#111111"
+    android:orientation="vertical">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.practice.android.journal.JournalDetails">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:orientation="vertical">
 
 
@@ -26,46 +35,46 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40dp"
             android:layout_gravity="center"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textIsSelectable="true"/>
+            android:textIsSelectable="true"
+            android:textSize="40dp"/>
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:layout_marginTop="20dp"
             android:textColor="#FFFFFF"
             android:textIsSelectable="true"
-            android:layout_marginTop="20dp"/>
+            android:textSize="25dp"/>
 
         <TextView
             android:id="@+id/location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25dp"
+            android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
             android:textIsSelectable="true"
-            android:layout_marginTop="10dp"/>
+            android:textSize="25dp"/>
 
         <TextView
             android:id="@+id/desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:layout_marginTop="10dp"
             android:textColor="#FFFFFF"
             android:textIsSelectable="true"
-            android:layout_marginTop="10dp"/>
+            android:textSize="20dp"/>
 
         <TextView
-            android:paddingTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingTop="20dp"
             android:text="Pictures:"
-            android:textSize="25dp"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF"
+            android:textSize="25dp"/>
 
 
         <LinearLayout
@@ -76,26 +85,32 @@
 
             <ImageView
                 android:id="@+id/ivImage1"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                />
+            />
 
             <ImageView
                 android:id="@+id/ivImage2"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
             <ImageView
                 android:id="@+id/ivImage3"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"/>
 
         </LinearLayout>
 
     </LinearLayout>
+
+
+</LinearLayout>
+
+    </ScrollView>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/del"
@@ -104,9 +119,8 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="8dp"
         android:onClick="deleteEntry"
-        android:src="@android:drawable/ic_menu_delete"
+        android:src="@drawable/ic_delete"
         android:tint="@android:color/white"
-        app:backgroundTint="@android:color/darker_gray"/>
+        app:backgroundTint="@android:color/holo_red_light"/>
 
 </LinearLayout>
-    </ScrollView>
