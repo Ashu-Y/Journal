@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -109,7 +110,10 @@ public class EditorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 flag = 2;
-                selectImage();
+                ivImage2 = (ImageView) findViewById(R.id.ivImage2);
+                ivImage2.setImageURI(Uri.parse(check1));
+
+//                selectImage();
             }
         });
         ivImage2 = (ImageView) findViewById(R.id.ivImage2);
@@ -162,15 +166,23 @@ public class EditorActivity extends AppCompatActivity {
          * there are no values).
          * The third argument is the ContentValues object containing the info for Toto.
          */
-        long newRowId = db.insert(JournalEntry.TABLE_NAME, null, values);
+        long newRowId = -2;
+        if(title != null && !title.isEmpty())
+            newRowId = db.insert(JournalEntry.TABLE_NAME, null, values);
+
+        if(newRowId == -2)
+            Toast.makeText(this, "Title is required", Toast.LENGTH_SHORT).show();
 
         if (newRowId == -1) {
             Toast.makeText(this, "Error in inserting data", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        if(newRowId != -1 && newRowId != -2)
+        {
             Toast.makeText(this, "Data successfully inserted", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, MainActivity.class));
         }
 
-        startActivity(new Intent(this, MainActivity.class));
+
 
     }
 

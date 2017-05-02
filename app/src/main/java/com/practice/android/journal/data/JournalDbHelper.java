@@ -41,7 +41,7 @@ public class JournalDbHelper extends SQLiteOpenHelper {
         //String containing SQL statement to create the Journal table
         String SQL_CREATE_JOURNAL_TABLE = "CREATE TABLE " + JournalEntry.TABLE_NAME + "("
                 + JournalEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + JournalEntry.COLUMN_TITLE + " TEXT NOT NULL, "
+                + JournalEntry.COLUMN_TITLE + " TEXT UNIQUE NOT NULL, "
                 + JournalEntry.COLUMN_DATE + " TEXT, "
                 + JournalEntry.COLUMN_LOCATION + " TEXT, "
                 + JournalEntry.COLUMN_IMAGE1 + " TEXT, "

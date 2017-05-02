@@ -1,64 +1,42 @@
 package com.practice.android.journal;
 
-import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.practice.android.journal.data.JournalContract.JournalEntry;
 import com.practice.android.journal.data.JournalDbHelper;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class JournalDetails extends AppCompatActivity {
 
     public JournalDbHelper mDbHelper;
+    String title;
+    TextView tv;
+    ImageView iv;
     SQLiteDatabase db;
-    ArrayList items;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_journal_details);
+
+        Bundle bundle = getIntent().getExtras();
+        title = bundle.getString("title");
+
+        tv = (TextView) findViewById(R.id.title);
+        iv = (ImageView) findViewById(R.id.img);
+
+        tv.setText(title);
 
         mDbHelper = new JournalDbHelper(this);
-        items = new ArrayList();
-
 
         displayDatabaseInfo();
-
-
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        ListView listView = (ListView) findViewById(R.id.lvItems);
-        listView.setAdapter(itemsAdapter);
-
-
-
-        listView.setOnItemClickListener(new OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                // TODO Auto-generated method stub
-                Toast.makeText(MainActivity.this, items.get(position).toString(), Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(MainActivity.this, JournalDetails.class);
-                intent.putExtra("title", items.get(position).toString());
-                startActivity(intent);
-
-            }
-        });
-
 
     }
 
@@ -66,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private void displayDatabaseInfo() {
         //Create and/or open a database to read from it
         db = mDbHelper.getReadableDatabase();
+
+        String[] selArgs = new String[] {title};
 
         /*
         Define a projection that specifies which columns from the database
@@ -143,8 +123,9 @@ public class MainActivity extends AppCompatActivity {
 //                        currentImage3 + " - " +
 //                        currentDescription));
 
-
-                items.add(currentTitle);
+                tv.append(currentDate);
+                if(currentImage1 != null && !currentImage1.isEmpty())
+                    iv.setImageURI(Uri.parse(currentImage1));
 
             }
         } finally {
@@ -154,51 +135,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
-    public void check(View v) {
-        displayDatabaseInfo();
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-        ListView listView = (ListView) findViewById(R.id.lvItems);
-        listView.setAdapter(itemsAdapter);
-    }
-
-    public void editor(View view) {
-        startActivity(new Intent(this, EditorActivity.class));
-    }
-
-    public void update(View view){
-        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(JournalEntry.COLUMN_TITLE, "The Hell");
-
-// Which row to update, based on the title
-        String selection = JournalEntry.COLUMN_TITLE + " LIKE ?";
-        String[] selectionArgs = { "abcd" };
-
-        int count = db.update(
-                JournalEntry.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        Log.d("Main Activity", "update");
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        db.close();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        db.close();
-    }
-
 
 }
